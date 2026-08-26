@@ -1,0 +1,73 @@
+Prompts Used — On-Screen Dialogue Detection & Active Speaker Detection Pipeline
+================================================================================
+
+1.
+I have some doubts regarding this problem statement. First, list down what
+are the key requirements, and also I need clarification on what "on-screen
+dialogue" even means and its potential impact depending on its meaning.
+
+2.
+I meant on-screen dialogue in the filmmaking perspective.
+
+3.
+Now with the definition clear, answer this question again — let me know all
+the methods, tools and techniques you can find about on-screen dialogue
+detection and recognition.
+
+4.
+Let me know different methods that help extract/use videos from a link
+irrespective of the domain, it can be YouTube or some website like this
+https://ok.ru/video/248244667877. Help me use the video directly for further
+processing without necessarily downloading it, and let me know different
+methods for this task.
+
+5.
+Is there any way to use the video directly without downloading it? I need to
+process it further as well, and downloading isn't memory efficient and takes
+a lot of time.
+
+6.
+What are the current best tools, techniques and models — my task is to
+detect a particular phrase spoken in the on-screen dialogue more clearly. The
+dialogue to detect is: "My mind rebels at stagnation." Give out methods
+accordingly.
+
+7.
+For audio extraction right now I am just downloading the video using the
+link and using yt-dlp. I will change this part later once the base solution
+is working — let's start simple and then optimize.
+
+8.
+Let's start with audio transcription and phrase search to find the exact
+timestamp where the given dialogue appears. Which transcription model would
+you recommend, and how should fuzzy phrase matching be set up to handle
+transcription errors?
+
+9.
+Can you give me the Colab-ready code for this step? Also, is ffmpeg needed
+for this pipeline?
+
+10.
+I ran into this dependency/version error while installing packages in Colab
+(ctranslate2 and related conflicts). How do I resolve this and get a clean
+working environment?
+
+11.
+Now that we have the frame and timestamp, let's add a few seconds of padding
+at the start and end of that window and perform Active Speaker Detection to
+verify whether the detected dialogue is actually on-screen (lip-synced) or
+just background/off-screen audio.
+
+12.
+Break down the topic of Active Speaker Detection — how it works, the general
+approaches, and how it fits into this pipeline.
+
+13.
+I want to try this using dedicated ASD models instead of a generic
+face-mesh/mediapipe approach — list down the available options and share
+comparative statistics (accuracy, speed, dataset benchmarks) for each model.
+
+14.
+Let's go with the Light-ASD model. Also, what about NVIDIA's hosted
+Active Speaker Detection model at https://build.nvidia.com/nvidia/active-speaker-detection —
+would that suit my task better?
