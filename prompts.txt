@@ -44,30 +44,26 @@ you recommend, and how should fuzzy phrase matching be set up to handle
 transcription errors?
 
 9.
-Can you give me the Colab-ready code for this step? Also, is ffmpeg needed
-for this pipeline?
-
-10.
 I ran into this dependency/version error while installing packages in Colab
 (ctranslate2 and related conflicts). How do I resolve this and get a clean
 working environment?
 
-11.
+10.
 Now that we have the frame and timestamp, let's add a few seconds of padding
 at the start and end of that window and perform Active Speaker Detection to
 verify whether the detected dialogue is actually on-screen (lip-synced) or
 just background/off-screen audio.
 
-12.
+11.
 Break down the topic of Active Speaker Detection — how it works, the general
 approaches, and how it fits into this pipeline.
 
-13.
+12.
 I want to try this using dedicated ASD models instead of a generic
 face-mesh/mediapipe approach — list down the available options and share
 comparative statistics (accuracy, speed, dataset benchmarks) for each model.
 
-14.
+13.
 Let's go with the Light-ASD model. Also, what about NVIDIA's hosted
 Active Speaker Detection model at https://build.nvidia.com/nvidia/active-speaker-detection —
 would that suit my task better?
