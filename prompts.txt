@@ -49,14 +49,14 @@ I ran into this dependency/version error while installing packages in Colab
 working environment?
 
 10.
-Now that we have the frame and timestamp, let's add a few seconds of padding
-at the start and end of that window and perform Active Speaker Detection to
-verify whether the detected dialogue is actually on-screen (lip-synced) or
-just background/off-screen audio.
-
-11.
 Break down the topic of Active Speaker Detection — how it works, the general
 approaches, and how it fits into this pipeline.
+
+11.
+Now that we have the frame and timestamp, let's add a few seconds of padding
+at the start and end of that window and perform Active Speaker Detection to
+verify whether the detected dialogue is actually on-screen or
+just background/off-screen audio.
 
 12.
 I want to try this using dedicated ASD models instead of a generic
