@@ -69,3 +69,34 @@ This is **Colab's frontend losing its websocket connection to the runtime** — 
    - **Run All** again from the top (Runtime → Run all), or
    - **Run cell by cell** instead, so you can see exactly which step it drops on and avoid re-running the expensive steps (download/transcription) unnecessarily.
 3. If it keeps happening, check **Runtime → Change runtime type** to confirm a GPU is still allocated — Colab sometimes reclaims runtimes after heavy usage (especially on the free tier).
+
+## Known issue: YouTube download fails ("Sign in to confirm you're not a bot" / signature errors)
+
+`yt-dlp` downloads YouTube's player JavaScript to decode the stream URLs, and YouTube aggressively rate-limits/blocks requests that don't look like a real logged-in browser — especially from datacenter IPs like Colab's. You may see errors such as:
+```
+ERROR: [youtube] <id>: Sign in to confirm you're not a bot
+```
+or JS-signature extraction failures. This is **YouTube blocking the request, not a bug in the notebook** — other sites (e.g. `ok.ru`, used in the current `url` value) aren't affected because they don't gate downloads behind this check.
+
+**What to do:** pass your own browser cookies to `yt-dlp` so the request looks like it's coming from your logged-in session.
+
+1. Install a cookie-export extension in your browser:
+   - Chrome/Edge: [Get cookies.txt LOCALLY](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)
+   - Firefox: [cookies.txt](https://addons.mozilla.org/en-US/firefox/addon/get-cookies-txt-locally/)
+
+   ⚠️ Do **not** use the older "Get cookies.txt" extension (without "LOCALLY") — it's been reported as malware and removed from the Chrome Web Store.
+
+2. Go to [youtube.com](https://youtube.com), make sure you're logged in, click the extension icon, and export/download `cookies.txt`.
+3. Upload `cookies.txt` to your Colab session (the folder icon in the left sidebar → upload, or drag-and-drop into `/content`).
+4. Point `yt-dlp` at it by adding `cookiefile` to `ydl_opts` in the download cell:
+   ```python
+   ydl_opts = {
+       "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+       "outtmpl": output_path,
+       "merge_output_format": "mp4",
+       "cookiefile": "cookies.txt",
+   }
+   ```
+5. Re-run the download cell.
+
+Treat `cookies.txt` as sensitive (it's tied to your logged-in session) — don't commit it or share the notebook with it still uploaded.
